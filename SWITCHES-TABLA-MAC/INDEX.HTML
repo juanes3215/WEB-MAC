@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switches: funcionamiento y tabla MAC | Juan Esteban Domínguez Rivera</title>
+  <link rel="icon" type="image/svg+xml" href="img/icono-switch.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__contenido">
+      <img src="img/icono-switch.svg" alt="Icono de un puerto Ethernet, representando el tema de switches" class="encabezado__logo">
+      <div class="encabezado__texto">
+        <h1>Switches: funcionamiento y tabla MAC</h1>
+        <p class="encabezado__autor">Juan Esteban Domínguez Rivera</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- SECCIÓN DE PRESENTACIÓN -->
+    <section class="seccion presentacion">
+      <div class="contenedor">
+        <img src="img/switch-panel.svg" alt="Panel frontal de un switch de red con 16 puertos y LEDs de actividad encendidos" class="presentacion__imagen">
+        <p class="presentacion__leyenda">Fig. 1 — Panel frontal de un switch Ethernet. Cada LED encendido indica un puerto con un dispositivo activo reconocido en su tabla de direcciones.</p>
+      </div>
+    </section>
+
+    <!-- INTRODUCCIÓN -->
+    <section class="seccion" id="introduccion">
+      <div class="contenedor seccion--tarjeta">
+        <h2>Introducción</h2>
+        <p>Un <strong>switch</strong> (conmutador) es el dispositivo que conecta físicamente los equipos dentro de una red local (LAN) y decide, puerto por puerto, hacia dónde debe viajar cada trama de datos. A diferencia de un simple repetidor, el switch no distribuye la información a ciegas: aprende en qué puerto se encuentra cada dispositivo y utiliza esa información para entregar el tráfico únicamente a quien corresponde.</p>
+        <p>Este comportamiento inteligente se apoya en un elemento central: la <strong>tabla de direcciones MAC</strong>, también llamada tabla CAM (Content Addressable Memory). Comprender cómo se construye y se usa esta tabla es indispensable para cualquier persona que administre redes, porque de ella depende gran parte del rendimiento, la seguridad y la capacidad de diagnóstico de una LAN.</p>
+        <p>El tema es importante porque prácticamente toda red cableada moderna —desde una oficina pequeña hasta el centro de datos de una empresa— se construye sobre switches. Entender su funcionamiento permite detectar cuellos de botella, resolver problemas de conectividad, diseñar redes segmentadas con VLAN y tomar decisiones informadas sobre qué equipo comprar según la cantidad de puertos, la velocidad y las funciones que ofrece.</p>
+      </div>
+    </section>
+
+    <!-- DESARROLLO / CONTENIDO -->
+    <section class="seccion seccion--alterna" id="desarrollo">
+      <div class="contenedor">
+        <h2>Desarrollo</h2>
+
+        <h3>¿Qué hace exactamente un switch?</h3>
+        <p>Un switch opera principalmente en la <strong>capa 2 (enlace de datos)</strong> del modelo OSI. Su tarea consiste en recibir tramas Ethernet por un puerto y reenviarlas por el puerto correcto según la dirección MAC de destino, en lugar de copiar la trama hacia todos los puertos como haría un hub.</p>
+
+        <h3>Subtemas clave</h3>
+        <ul class="lista">
+          <li><strong>Aprendizaje (learning):</strong> el switch observa la dirección MAC de origen de cada trama entrante y la asocia al puerto por el que llegó.</li>
+          <li><strong>Inundación (flooding):</strong> si la dirección MAC de destino no está en la tabla, la trama se envía por todos los puertos excepto el de origen.</li>
+          <li><strong>Reenvío (forwarding):</strong> cuando el destino sí está registrado, la trama se envía únicamente por ese puerto.</li>
+          <li><strong>Filtrado (filtering):</strong> si el origen y el destino están en el mismo puerto, la trama no se reenvía a los demás.</li>
+          <li><strong>Envejecimiento (aging):</strong> las entradas de la tabla MAC se eliminan automáticamente si no reciben tráfico durante un tiempo (por defecto, 300 segundos en equipos Cisco).</li>
+        </ul>
+
+        <h3>Conceptos clave</h3>
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>Concepto</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tabla MAC / CAM</td>
+              <td>Registro dinámico que relaciona direcciones MAC con puertos físicos del switch.</td>
+            </tr>
+            <tr>
+              <td>Dominio de colisión</td>
+              <td>Cada puerto de un switch es un dominio de colisión independiente, a diferencia de un hub.</td>
+            </tr>
+            <tr>
+              <td>Dominio de broadcast</td>
+              <td>Todos los puertos de un switch comparten el mismo dominio de broadcast, salvo que se usen VLAN.</td>
+            </tr>
+            <tr>
+              <td>Trama Ethernet</td>
+              <td>Unidad de datos que el switch procesa, compuesta por direcciones MAC origen y destino, datos y verificación de errores.</td>
+            </tr>
+            <tr>
+              <td>Full-duplex</td>
+              <td>Modo de transmisión que permite enviar y recibir datos simultáneamente en el mismo puerto.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Cómo se construye la tabla MAC</h3>
+        <p>Cuando un equipo nuevo se conecta y envía su primera trama, el switch anota su dirección MAC junto con el número de puerto por el que llegó. Con el tiempo, el switch conoce la ubicación de todos los dispositivos activos y puede tomar decisiones de reenvío exactas. El siguiente diagrama ilustra este proceso con cuatro equipos conectados a un mismo switch.</p>
+
+        <img src="img/switch-topologia.svg" alt="Diagrama de un switch conectado a cuatro computadoras, junto con la tabla MAC que asocia cada puerto con una dirección MAC" class="imagen-contenido">
+        <p class="presentacion__leyenda">Fig. 2 — Cada puerto queda asociado a la dirección MAC del equipo conectado; así el switch sabe exactamente por dónde reenviar el tráfico.</p>
+
+        <h3>Ventajas y desventajas</h3>
+        <div class="dos-columnas">
+          <div class="columna columna--ventaja">
+            <h4>Ventajas</h4>
+            <ul class="lista">
+              <li>Reduce las colisiones al crear un dominio de colisión por puerto.</li>
+              <li>Aprovecha mejor el ancho de banda al enviar tráfico solo al destino correcto.</li>
+              <li>Permite full-duplex, duplicando la capacidad efectiva de cada enlace.</li>
+              <li>Es la base para segmentar la red mediante VLAN.</li>
+              <li>Facilita el monitoreo del tráfico por puerto individual.</li>
+            </ul>
+          </div>
+          <div class="columna columna--desventaja">
+            <h4>Desventajas</h4>
+            <ul class="lista">
+              <li>No detiene el tráfico de broadcast, que sigue llegando a todos los puertos.</li>
+              <li>Es vulnerable a ataques de saturación de la tabla MAC (MAC flooding).</li>
+              <li>Un switch mal configurado en VLAN puede exponer tráfico no deseado.</li>
+              <li>Los equipos de gama alta con funciones administrables tienen mayor costo.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Componentes y herramientas relacionadas</h3>
+        <ul class="lista">
+          <li><strong>Switch no administrable:</strong> funciona automáticamente, sin configuración (uso doméstico o pequeñas oficinas).</li>
+          <li><strong>Switch administrable (Cisco IOS, HP, MikroTik, etc.):</strong> permite configurar VLAN, seguridad de puertos y monitoreo.</li>
+          <li><strong>Comando <code>show mac address-table</code>:</strong> en equipos Cisco, muestra la tabla MAC aprendida en tiempo real.</li>
+          <li><strong>Wireshark:</strong> herramienta de análisis de tráfico útil para observar tramas Ethernet y direcciones MAC.</li>
+          <li><strong>Packet Tracer / GNS3:</strong> simuladores usados para practicar el comportamiento de switches sin hardware físico.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EJEMPLOS O CASOS PRÁCTICOS -->
+    <section class="seccion" id="ejemplos">
+      <div class="contenedor">
+        <h2>Ejemplos y casos prácticos</h2>
+
+        <h3>Caso real: red de una oficina pequeña</h3>
+        <p>En una oficina con doce computadoras, un switch de 24 puertos conecta cada equipo, la impresora de red y el punto de acceso Wi-Fi. Al encender los equipos, el switch aprende automáticamente las direcciones MAC de cada uno en pocos segundos. Si un empleado imprime un documento, la trama viaja directamente desde su computadora hasta el puerto de la impresora, sin saturar el resto de la red.</p>
+
+        <h3>Ejemplo funcional: verificación de la tabla MAC</h3>
+        <p>En un switch Cisco, el siguiente comando permite consultar qué direcciones MAC ha aprendido el equipo y por qué puerto:</p>
+        <table class="tabla tabla--codigo">
+          <thead>
+            <tr>
+              <th>Comando</th>
+              <th>Resultado esperado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>show mac address-table</code></td>
+              <td>Lista de direcciones MAC, VLAN y puerto asociado</td>
+            </tr>
+            <tr>
+              <td><code>show mac address-table count</code></td>
+              <td>Número total de direcciones aprendidas</td>
+            </tr>
+            <tr>
+              <td><code>clear mac address-table dynamic</code></td>
+              <td>Borra las entradas dinámicas de la tabla</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Comparación con otros dispositivos de red</h3>
+        <p>Para dimensionar el papel del switch dentro de una red, resulta útil compararlo con el hub y el router, dos dispositivos con los que suele confundirse.</p>
+
+        <img src="img/comparativa.svg" alt="Comparación entre hub, switch y router mostrando cómo cada uno maneja el tráfico" class="imagen-contenido">
+        <p class="presentacion__leyenda">Fig. 3 — El hub repite la señal a todos los puertos, el switch la dirige según la tabla MAC y el router conecta redes distintas usando direcciones IP.</p>
+
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>Dispositivo</th>
+              <th>Capa OSI</th>
+              <th>Forma de envío</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hub</td>
+              <td>Física (capa 1)</td>
+              <td>Repite la señal a todos los puertos</td>
+            </tr>
+            <tr>
+              <td>Switch</td>
+              <td>Enlace de datos (capa 2)</td>
+              <td>Envía solo al puerto del destino, según la tabla MAC</td>
+            </tr>
+            <tr>
+              <td>Router</td>
+              <td>Red (capa 3)</td>
+              <td>Conecta redes distintas usando direcciones IP</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CONCLUSIONES -->
+    <section class="seccion seccion--alterna" id="conclusiones">
+      <div class="contenedor seccion--tarjeta">
+        <h2>Conclusiones</h2>
+        <ul class="lista">
+          <li>El switch es el dispositivo central de cualquier LAN cableada moderna, y su eficiencia depende directamente de la tabla MAC que construye de forma dinámica.</li>
+          <li>Comprender los procesos de aprendizaje, inundación, reenvío y filtrado permite explicar el comportamiento real del tráfico en una red.</li>
+          <li>Frente al hub, el switch reduce colisiones y mejora el uso del ancho de banda; frente al router, se diferencia por operar en capa 2 con direcciones MAC en lugar de IP.</li>
+          <li>En la industria actual, dominar el funcionamiento de los switches es la base para temas más avanzados como VLAN, seguridad de puertos y redes definidas por software.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="pie">
+    <div class="contenedor">
+      <p>© Derechos reservados — Juan Esteban Domínguez Rivera — 2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>

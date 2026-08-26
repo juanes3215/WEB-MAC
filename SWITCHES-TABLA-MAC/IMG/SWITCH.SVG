@@ -1,0 +1,75 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Panel frontal de un switch de red</title>
+  <desc id="desc">Ilustración de un switch Ethernet de 16 puertos con indicadores LED de actividad</desc>
+
+  <rect width="800" height="450" fill="#f5f5f5"/>
+
+  <!-- chasis del switch -->
+  <rect x="80" y="150" width="640" height="150" rx="10" fill="#2b2f36"/>
+  <rect x="80" y="150" width="640" height="150" rx="10" fill="none" stroke="#0077cc" stroke-width="3"/>
+
+  <!-- rejilla de ventilación -->
+  <g stroke="#454b55" stroke-width="3">
+    <line x1="100" y1="270" x2="130" y2="270"/>
+    <line x1="100" y1="280" x2="130" y2="280"/>
+    <line x1="100" y1="290" x2="130" y2="290"/>
+  </g>
+
+  <!-- marca -->
+  <text x="105" y="180" font-family="Poppins, sans-serif" font-size="16" fill="#ffffff" font-weight="600">SWITCH 16P GIGABIT</text>
+
+  <!-- puertos: 16 en dos filas de 8 -->
+  <g font-family="Roboto, sans-serif" font-size="10" fill="#cfd6e0">
+    <!-- generamos puertos -->
+    <!-- fila superior -->
+    <g id="fila1">
+      <!-- 8 puertos -->
+      <rect x="150" y="195" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+      <rect x="190" y="195" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+      <rect x="230" y="195" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+      <rect x="270" y="195" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+      <rect x="310" y="195" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+      <rect x="350" y="195" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+      <rect x="390" y="195" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+      <rect x="430" y="195" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+    </g>
+    <!-- LEDs fila superior: alternamos verde (activo) y apagado -->
+    <circle cx="165" cy="188" r="3" fill="#2ecc71"/>
+    <circle cx="205" cy="188" r="3" fill="#3a4048"/>
+    <circle cx="245" cy="188" r="3" fill="#2ecc71"/>
+    <circle cx="285" cy="188" r="3" fill="#2ecc71"/>
+    <circle cx="325" cy="188" r="3" fill="#3a4048"/>
+    <circle cx="365" cy="188" r="3" fill="#2ecc71"/>
+    <circle cx="405" cy="188" r="3" fill="#3a4048"/>
+    <circle cx="445" cy="188" r="3" fill="#2ecc71"/>
+
+    <!-- fila inferior: 8 puertos más -->
+    <rect x="150" y="235" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+    <rect x="190" y="235" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+    <rect x="230" y="235" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+    <rect x="270" y="235" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+    <rect x="310" y="235" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+    <rect x="350" y="235" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+    <rect x="390" y="235" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+    <rect x="430" y="235" width="30" height="24" rx="2" fill="#12151a" stroke="#5a6472" stroke-width="1.5"/>
+
+    <circle cx="165" cy="264" r="3" fill="#3a4048"/>
+    <circle cx="205" cy="264" r="3" fill="#2ecc71"/>
+    <circle cx="245" cy="264" r="3" fill="#3a4048"/>
+    <circle cx="285" cy="264" r="3" fill="#2ecc71"/>
+    <circle cx="325" cy="264" r="3" fill="#2ecc71"/>
+    <circle cx="365" cy="264" r="3" fill="#3a4048"/>
+    <circle cx="405" cy="264" r="3" fill="#2ecc71"/>
+    <circle cx="445" cy="264" r="3" fill="#3a4048"/>
+  </g>
+
+  <!-- puerto uplink -->
+  <rect x="560" y="210" width="40" height="30" rx="2" fill="#12151a" stroke="#0077cc" stroke-width="2"/>
+  <text x="555" y="255" font-family="Roboto, sans-serif" font-size="11" fill="#cfd6e0">UPLINK</text>
+
+  <!-- LED de energía -->
+  <circle cx="650" cy="180" r="5" fill="#2ecc71"/>
+  <text x="620" y="205" font-family="Roboto, sans-serif" font-size="10" fill="#cfd6e0">PWR</text>
+
+  <text x="400" y="330" text-anchor="middle" font-family="Roboto, sans-serif" font-size="14" fill="#333333">Cada puerto activo indica un dispositivo aprendido en la tabla MAC</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Icono de puerto Ethernet">
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#0077cc"/>
+  <rect x="16" y="24" width="32" height="20" rx="3" fill="#ffffff"/>
+  <rect x="21" y="18" width="4" height="8" fill="#ffffff"/>
+  <rect x="29" y="18" width="4" height="8" fill="#ffffff"/>
+  <rect x="37" y="18" width="4" height="8" fill="#ffffff"/>
+  <circle cx="24" cy="38" r="2" fill="#0077cc"/>
+  <circle cx="32" cy="38" r="2" fill="#0077cc"/>
+  <circle cx="40" cy="38" r="2" fill="#0077cc"/>
+</svg>

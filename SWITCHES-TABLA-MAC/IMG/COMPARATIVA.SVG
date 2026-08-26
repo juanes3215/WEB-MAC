@@ -1,0 +1,56 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t3 d3">
+  <title id="t3">Comparación entre hub, switch y router</title>
+  <desc id="d3">Tres paneles que comparan cómo un hub, un switch y un router envían el tráfico de red</desc>
+
+  <rect width="800" height="450" fill="#f5f5f5"/>
+
+  <!-- HUB -->
+  <g font-family="Roboto, sans-serif">
+    <rect x="30" y="40" width="220" height="370" rx="8" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+    <text x="140" y="75" text-anchor="middle" font-family="Poppins, sans-serif" font-size="16" font-weight="600" fill="#333333">HUB</text>
+    <circle cx="140" cy="150" r="18" fill="#cfd6e0"/>
+    <circle cx="80" cy="220" r="10" fill="#0077cc"/>
+    <circle cx="200" cy="220" r="10" fill="#0077cc"/>
+    <circle cx="80" cy="280" r="10" fill="#0077cc"/>
+    <circle cx="200" cy="280" r="10" fill="#0077cc"/>
+    <line x1="140" y1="150" x2="80" y2="220" stroke="#e74c3c" stroke-width="2"/>
+    <line x1="140" y1="150" x2="200" y2="220" stroke="#e74c3c" stroke-width="2"/>
+    <line x1="140" y1="150" x2="80" y2="280" stroke="#e74c3c" stroke-width="2"/>
+    <line x1="140" y1="150" x2="200" y2="280" stroke="#e74c3c" stroke-width="2"/>
+    <text x="140" y="345" text-anchor="middle" font-size="12" fill="#333333">Repite la señal</text>
+    <text x="140" y="362" text-anchor="middle" font-size="12" fill="#333333">a todos los puertos</text>
+    <text x="140" y="379" text-anchor="middle" font-size="12" fill="#333333">(capa física)</text>
+  </g>
+
+  <!-- SWITCH -->
+  <g font-family="Roboto, sans-serif">
+    <rect x="290" y="40" width="220" height="370" rx="8" fill="#ffffff" stroke="#0077cc" stroke-width="2"/>
+    <text x="400" y="75" text-anchor="middle" font-family="Poppins, sans-serif" font-size="16" font-weight="600" fill="#0077cc">SWITCH</text>
+    <rect x="370" y="135" width="60" height="30" rx="4" fill="#0077cc"/>
+    <circle cx="340" cy="220" r="10" fill="#2ecc71"/>
+    <circle cx="460" cy="220" r="10" fill="#cfd6e0"/>
+    <circle cx="340" cy="280" r="10" fill="#cfd6e0"/>
+    <circle cx="460" cy="280" r="10" fill="#2ecc71"/>
+    <line x1="400" y1="165" x2="340" y2="220" stroke="#2ecc71" stroke-width="2"/>
+    <line x1="400" y1="165" x2="460" y2="280" stroke="#2ecc71" stroke-width="2"/>
+    <text x="400" y="345" text-anchor="middle" font-size="12" fill="#333333">Envía solo al puerto</text>
+    <text x="400" y="362" text-anchor="middle" font-size="12" fill="#333333">del destino según la</text>
+    <text x="400" y="379" text-anchor="middle" font-size="12" fill="#333333">tabla MAC (capa 2)</text>
+  </g>
+
+  <!-- ROUTER -->
+  <g font-family="Roboto, sans-serif">
+    <rect x="550" y="40" width="220" height="370" rx="8" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+    <text x="660" y="75" text-anchor="middle" font-family="Poppins, sans-serif" font-size="16" font-weight="600" fill="#333333">ROUTER</text>
+    <polygon points="660,135 690,165 660,195 630,165" fill="#2ecc71"/>
+    <circle cx="600" cy="240" r="10" fill="#0077cc"/>
+    <circle cx="720" cy="240" r="10" fill="#e67e22"/>
+    <line x1="660" y1="165" x2="600" y2="240" stroke="#333333" stroke-width="2"/>
+    <line x1="660" y1="165" x2="720" y2="240" stroke="#333333" stroke-width="2"/>
+    <text x="600" y="265" text-anchor="middle" font-size="10" fill="#333333">Red A</text>
+    <text x="720" y="265" text-anchor="middle" font-size="10" fill="#333333">Red B</text>
+    <text x="660" y="345" text-anchor="middle" font-size="12" fill="#333333">Conecta redes distintas</text>
+    <text x="660" y="362" text-anchor="middle" font-size="12" fill="#333333">usando direcciones IP</text>
+    <text x="660" y="379" text-anchor="middle" font-size="12" fill="#333333">(capa 3)</text>
+  </g>
+</svg>
